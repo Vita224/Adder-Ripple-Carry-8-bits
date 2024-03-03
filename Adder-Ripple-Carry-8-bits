@@ -1,0 +1,111 @@
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: 
+// Engineer: 
+// 
+// Create Date: 16.02.2024 17:01:50
+// Design Name: 
+// Module Name: Vivado_2
+// Project Name: 
+// Target Devices: 
+// Tool Versions: 
+// Description: 
+// 
+// Dependencies: 
+// 
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
+// 
+//////////////////////////////////////////////////////////////////////////////////
+//sw[0],sw[1],sw[2],sw[3],sw[4],sw[5],sw[6],sw[7]
+//A1   ,A2   ,A3   ,A4   ,A5   ,A6   ,A7   ,A8   
+
+//sw[8],sw[9],sw[10],sw[11],sw[12],sw[13],sw[14],sw[15],sw[16]
+//B1   ,B2   ,B3    ,B4    ,B5    , B6   , B7   ,B8    ,CIN
+
+//LED0, LED1, LED2, LED3, LED4, LED5, LED6, LED7, LED8
+//S0  , S1  , S2  , S3  , S4  , S5  , S6  , S7  ,COUT
+module Ripple_Carry_8_Bits(
+    input [0:16]sw, //entradas
+    
+    output LED0, //salidas
+    output LED1,
+    output LED2,
+    output LED3,
+    output LED4,
+    output LED5,
+    output LED6,
+    output LED7,
+    output LED8
+    );
+    //compuertas
+    logic C1,C2,C3,C4,C5,C6,C7,C8,C9,C10,C11,C12,C13,C14,C15,C16,C17,C18,C19,C20,C21,C22,C23,C24,C25,C26,C27,C28,C29,C30,C31,C32,C33,C34,C35,C36,C37,C38,C39,C40;
+    //salidas
+    assign LED0 = C3;
+    assign LED1 = C8;
+    assign LED2 = C13;
+    assign LED3 = C18;
+    assign LED4 = C23;
+    assign LED5 = C28;
+    assign LED6 = C33;
+    assign LED7 = C38;
+    assign LED8 = C40;
+    
+    //sumador 1
+    assign C1 = sw[0] ^ sw[8];
+    assign C2 = sw[0] & sw[8];
+    assign C3 = C1 ^ sw[16];
+    assign C4 = C1 & sw[16];
+    assign C5 = C2 | C4;
+    
+    //sumador 2
+    assign C6 = sw[1] ^ sw[9];
+    assign C7 = sw[1] & sw[9];
+    assign C8 = C6 ^ C5;
+    assign C9 = C6 & C5;
+    assign C10 = C7 | C9;
+    
+    //sumador3
+    assign C11 = sw[2] ^ sw[10];
+    assign C12 = sw[2] & sw[10];
+    assign C13 = C11 ^ C10;
+    assign C14 = C11 & C10;
+    assign C15 = C12 | C14;
+    
+    //sumador4
+    assign C16 = sw[3] ^ sw[11];
+    assign C17 = sw[3] & sw[11];
+    assign C18 = C16 ^ C15;
+    assign C19 = C16 & C15;
+    assign C20 = C17 | C19;
+    
+    //sumador5
+    assign C21 = sw[4] ^ sw[12];
+    assign C22 = sw[4] & sw[12];
+    assign C23 = C21 ^ C20;
+    assign C24 = C21 & C20;
+    assign C25 = C22 | C24;
+    
+    //sumador6
+    assign C26 = sw[5] ^ sw[13];
+    assign C27 = sw[5] & sw[13];
+    assign C28 = C26 ^ C25;
+    assign C29 = C26 & C25;
+    assign C30 = C27 | C29;
+    
+    //sumador7
+    assign C31 = sw[6] ^ sw[14];
+    assign C32 = sw[6] & sw[14];
+    assign C33 = C31 ^ C30;
+    assign C34 = C31 & C30;
+    assign C35 = C32 | C34;
+    
+    //sumador8
+    assign C36 = sw[7] ^ sw[15];
+    assign C37 = sw[7] & sw[15];
+    assign C38 = C36 ^ C35;
+    assign C39 = C36 & C35;
+    assign C40 = C37 | C39;
+    
+endmodule
